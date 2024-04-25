@@ -17,7 +17,13 @@ const userSchema = new Schema({
         trim: true,
         minLength: 3,
         required: true
-    }
+    },
+    
+    notes:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Note'
+    }]
+    
 }, {
     timestamps: true,
     // Even though it's hashed - don't serialize the password

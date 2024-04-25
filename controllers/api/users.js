@@ -8,6 +8,7 @@ module.exports = {
   checkToken,
 };
 
+
 async function login(req, res) {
   try {
     const user = await User.findOne({ email: req.body.email });

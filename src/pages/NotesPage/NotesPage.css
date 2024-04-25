@@ -1,0 +1,9 @@
+.NotesPage form {
+    display: flex;
+    /* background-color: aquamarine; */
+}
+.NotesPage input {
+    /* display: flex; */
+    /* background-color: aquamarine; */
+    width: 60%;
+}
