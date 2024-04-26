@@ -14,6 +14,7 @@ async function create(req, res) {
         const user = await User.findById(req.user._id)
         // const user = await User.findOne({ email: req.body.email });
         const note = await Note.create(req.body)
+        // console.log(req.body)
         note.text = req.body.text
         note.save()
         user.notes.push(note)
@@ -27,7 +28,9 @@ async function create(req, res) {
 async function index(req, res) {
     try {
         const note = await Note.find({})
+        // console.log("NOTE:", note)
         res.json(note)
+        console.log("NOTE:", note)
     } catch (err) {
         // Client will check for non-2xx status code 
         res.status(400).json(err);

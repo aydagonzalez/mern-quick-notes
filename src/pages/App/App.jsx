@@ -12,10 +12,10 @@ import { indexNotes } from "../../utilities/notes-service"
 
 export default function App() {
   const [user, setUser] = useState(getUser())
-  // const [notes, setNewNotes] = useState(indexNotes());
+  const [indexNotes2, setIndexNotes2] = useState(indexNotes());
+
   const [notes, setNewNotes] = useState([
     { text: "" },
-
   ]);
   
   function addNote(note) {
@@ -26,16 +26,7 @@ export default function App() {
     <main className="App">
       {user ?
         <>
-          {/* {notes.length ? (
-            <h2>No Notes Yet!</h2>
-          ) : (
-            <ul>
-              {notes.map(note => (
-                <li >{note.text}</li>
-              ))}
-            </ul>
-          )}
-          <hr /> */}
+        <h1>{console.log()}</h1>
           <NavBar user={user} setUser={setUser} />
           <Routes>
             <Route path="/notes" element={<NotesPage user={user} notes={notes} addNote={addNote} /> } />

@@ -21,7 +21,7 @@ export default function NewNoteForm({ user, addNote }) {
         try {
             addNote(newNote);
             const text = await notesService.createNote(newNote)
-            // const indexNotes = await notesService.indexNotes(newNote)
+            const indexNotes = await notesService.indexNotes(newNote)
             setNewNote({ text: "" });
         } catch {
             setError('Add Note Failed - Try Again');

@@ -6,5 +6,5 @@ export async function createNote(note) {
 }
 
 export async function indexNotes(note) {
-  return sendRequest(BASE_URL, 'get', note)
+  return sendRequest(BASE_URL, 'GET', note)
 }
