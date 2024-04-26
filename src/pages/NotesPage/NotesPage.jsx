@@ -9,24 +9,16 @@ import "./NotesPage.css"
 
 export default function NotesPage({ user, notes, addNote }) {
     const [noteItems, setNoteItems] = useState([]);
-    const categoriesRef = useRef([]);
-
-    
+    const notesRef = useRef([]);
     useEffect(function() {
         async function getNotes() {
         const notess = await notesAPI.indexNotes()
-        categoriesRef.current = [...new Set(noteItems.map(item => item.text))];
+        notesRef.current = [(noteItems.map(note => note.text))];
         setNoteItems(notess)
     //   console.log('NewOrderPage rendered');
     }
     getNotes()
 }, []);
-
-    
-
-
-
-   
 
     return (
         <div className='NotesPage'>
@@ -35,8 +27,11 @@ export default function NotesPage({ user, notes, addNote }) {
             <h1>{user.name} <br />
                 {user.createdAt} <br />
                 {user.email}
-                <h1>Note    {user.note} </h1>
+                {/* <h1>Note    {user.notes.text} </h1> */}
                 {user.note}
+                NOTE:  {user.notes.text}
+                NOTE:  {console.log("USER.NOTES.ID", user)}
+                NOTE:  {user.notes._id}
                 {/* {console.log(user)}
                 {console.log(user.notes)}
                 {console.log(user.notes[1])} */}
@@ -45,9 +40,9 @@ export default function NotesPage({ user, notes, addNote }) {
 
 
             <ul className="NoteList padding-0">
-                {notes.map((n, idx) => (
-                    <NoteListItem index={idx} note={n} key={idx} />
-                ))}
+     
+                    <NoteListItem notes={notesRef.current}  noteItems={noteItems} />
+
             </ul>
         </div>
 

@@ -12,7 +12,6 @@ import { indexNotes } from "../../utilities/notes-service"
 
 export default function App() {
   const [user, setUser] = useState(getUser())
-  const [indexNotes2, setIndexNotes2] = useState(indexNotes());
 
   const [notes, setNewNotes] = useState([
     { text: "" },
@@ -29,6 +28,7 @@ export default function App() {
         <h1>{console.log()}</h1>
           <NavBar user={user} setUser={setUser} />
           <Routes>
+            <Route path="/" element={<NotesPage user={user} notes={notes} addNote={addNote} /> } />
             <Route path="/notes" element={<NotesPage user={user} notes={notes} addNote={addNote} /> } />
           </Routes>
 
