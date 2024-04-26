@@ -7,20 +7,17 @@ import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import NewNoteForm from '../NewNoteForm/NewNoteForm';
-import { indexNotes } from "../../utilities/notes-service"
+// import { indexNotes } from "../../utilities/notes-service"
 
 
 export default function App() {
   const [user, setUser] = useState(getUser())
 
-  const [notes, setNewNotes] = useState([
-    { text: "" },
-  ]);
+  // const [notes, setNewNotes] = useState([]);
   
-  function addNote(note) {
-    setNewNotes([...notes, note]);
-  }
-
+  // function addNote(note) {
+  //   setNewNotes([...notes, note]);
+  // }
   return (
     <main className="App">
       {user ?
@@ -28,8 +25,10 @@ export default function App() {
         <h1>{console.log()}</h1>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route path="/" element={<NotesPage user={user} notes={notes} addNote={addNote} /> } />
-            <Route path="/notes" element={<NotesPage user={user} notes={notes} addNote={addNote} /> } />
+            {/* <Route path="/" element={<NotesPage user={user} notes={notes} addNote={addNote} /> } /> */}
+            {/* <Route path="/notes" element={<NotesPage user={user} notes={notes} addNote={addNote} /> } /> */}
+            <Route path="/" element={<NotesPage user={user}  /> } />
+            <Route path="/notes" element={<NotesPage user={user}  /> } />
           </Routes>
 
         </>

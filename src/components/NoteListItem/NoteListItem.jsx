@@ -1,20 +1,14 @@
-// import "./SkillListItem.css";
+import DeleteNoteForm from "../../pages/NewNoteForm/DeleteNoteForm";
 
-// export default function NoteListItem({ notes }) {
-//   return (
-//     <li className="NoteListItem padding-0">
-//       {notes}
-//       {/* {notes.join(', ')} */}
-//       {console.log("NORE:",notes)}
-//     </li>
-//   );
-// }
 
 export default function NoteListItem({ noteItems }) {
-  const notes = noteItems.map(note =>
+  
+  const notes = noteItems.map((note , idx) =>
     <li >
-      {note.text}
-      {(note.createdAt)}
+      {note.text}  - - -  
+      {note.createdAt}
+      {/* <DeleteNoteForm note={note} idx={idx} /> */}
+
       {console.log("noteCat:", note)}
     </li>
   );

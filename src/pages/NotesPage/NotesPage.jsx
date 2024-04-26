@@ -1,24 +1,30 @@
 // import * as usersService from '../../utilities/users-service';
 import { useState,useEffect, useRef } from "react";
 import * as notesAPI from '../../utilities/notes-api';
-
+import NewNoteForm from '../NewNoteForm/NewNoteForm';
 // import NewNoteForm from "../NewNoteForm/NewNoteForm"
 import NoteListItem from '../../components/NoteListItem/NoteListItem';
-import NewNoteForm from '../NewNoteForm/NewNoteForm';
+// import NewNoteForm from '../NewNoteForm/NewNoteForm';
 import "./NotesPage.css"
 
-export default function NotesPage({ user, notes, addNote }) {
-    const [noteItems, setNoteItems] = useState([]);
-    const notesRef = useRef([]);
+export default function NotesPage({ user }) {
+    const [notes, setNotes] = useState([]);
+
+    function addNote(note) {
+        setNotes([...notes, note]);
+    }
+
+    const notesRef = useRef([]); //Maybe this is not need
+
     useEffect(function() {
         async function getNotes() {
         const notess = await notesAPI.indexNotes()
-        notesRef.current = [(noteItems.map(note => note.text))];
-        setNoteItems(notess)
-    //   console.log('NewOrderPage rendered');
+        console.log("NOTES from USE EFFECT fxn:", notess)
+        notesRef.current = [(notess.map(note => note.text))];
+        setNotes(notess)
     }
     getNotes()
-}, []);
+    }, []);
 
     return (
         <div className='NotesPage'>
@@ -40,8 +46,8 @@ export default function NotesPage({ user, notes, addNote }) {
 
 
             <ul className="NoteList padding-0">
-     
-                    <NoteListItem notes={notesRef.current}  noteItems={noteItems} />
+
+                    <NoteListItem notes={notesRef.current}  noteItems={notes} />
 
             </ul>
         </div>
