@@ -7,14 +7,17 @@ import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import NewNoteForm from '../NewNoteForm/NewNoteForm';
+import { indexNotes } from "../../utilities/notes-service"
 
 
 export default function App() {
   const [user, setUser] = useState(getUser())
+  // const [notes, setNewNotes] = useState(indexNotes());
   const [notes, setNewNotes] = useState([
     { text: "" },
 
   ]);
+  
   function addNote(note) {
     setNewNotes([...notes, note]);
   }
@@ -23,21 +26,21 @@ export default function App() {
     <main className="App">
       {user ?
         <>
-          {notes.length ? (
+          {/* {notes.length ? (
             <h2>No Notes Yet!</h2>
           ) : (
             <ul>
               {notes.map(note => (
-                <li key={note._id}>{note.text}</li>
+                <li >{note.text}</li>
               ))}
             </ul>
           )}
-          <hr />
+          <hr /> */}
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route path="/notes" element={<NotesPage user={user} notes={notes} addNote={addNote} />} />
+            <Route path="/notes" element={<NotesPage user={user} notes={notes} addNote={addNote} /> } />
           </Routes>
-          <NewNoteForm user={user} addNote={addNote} />
+
         </>
         : <AuthPage setUser={setUser} />}
     </main>

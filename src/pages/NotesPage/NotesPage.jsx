@@ -2,9 +2,10 @@
 // import { useState } from "react";
 // import NewNoteForm from "../NewNoteForm/NewNoteForm"
 import NoteListItem from '../../components/NoteListItem/NoteListItem';
+import NewNoteForm from '../NewNoteForm/NewNoteForm';
 import "./NotesPage.css"
 
-export default function NotesPage({ user, notes }) {
+export default function NotesPage({ user, notes, addNote }) {
 
     return (
         <div className='NotesPage'>
@@ -15,6 +16,7 @@ export default function NotesPage({ user, notes }) {
                 {user.email}
                 {user.note}
             </h1>
+            <NewNoteForm user={user} addNote={addNote} />
 
 
             <ul className="NoteList padding-0">

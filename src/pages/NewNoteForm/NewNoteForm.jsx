@@ -1,5 +1,6 @@
 // import * as usersService from '../../utilities/users-service';
 import { useState } from "react";
+import * as notesService from '../../utilities/notes-service';
 
 // import "./NotesPage.css"
 
@@ -12,18 +13,20 @@ export default function NewNoteForm({ user, addNote }) {
     function handleChange(evt) {
         const { name, value } = evt.target;
         setNewNote({ ...newNote, [name]: value });
+        setError('');
     }
 
     async function handleAddNewNote(evt) {
         evt.preventDefault();
         try {
             addNote(newNote);
+            const text = await notesService.createNote(newNote)
+            // const indexNotes = await notesService.indexNotes(newNote)
             setNewNote({ text: "" });
         } catch {
             setError('Add Note Failed - Try Again');
         }
     }
-
 
     return (
         <div className='NotesPage'>
