@@ -18,10 +18,10 @@ export default function NotesPage({ user }) {
 
     useEffect(function() {
         async function getNotes() {
-        const notess = await notesAPI.indexNotes()
-        console.log("NOTES from USE EFFECT fxn:", notess)
-        notesRef.current = [(notess.map(note => note.text))];
-        setNotes(notess)
+        const newNote = await notesAPI.indexNotes()
+        console.log("NOTES from USE EFFECT fxn:", newNote)
+        notesRef.current = [(newNote.map(note => note.text))];
+        setNotes(newNote)
     }
     getNotes()
     }, []);

@@ -9,8 +9,8 @@ export async function indexNotes(note) {
   return sendRequest(BASE_URL, 'GET', note)
 }
 
-export async function deleteNote(idx) {
-  return sendRequest(BASE_URL, 'DELETE', idx)
+export async function deleteNote(id) {
+  return sendRequest(`${BASE_URL}/${id}`, 'DELETE')
 }
 
 // export function deleteNote(id) {

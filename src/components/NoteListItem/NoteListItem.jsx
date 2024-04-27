@@ -6,15 +6,19 @@ export default function NoteListItem({ noteItems }) {
   const notes = noteItems.map((note , idx) =>
     <li >
       {note.text}  - - -  
-      {note.createdAt}
-      {/* <DeleteNoteForm note={note} idx={idx} /> */}
+      {note.createdAt} ----
+      <DeleteNoteForm note={note} key={idx} id={note._id} />
 
-      {console.log("noteCat:", note)}
     </li>
   );
   return (
-    <div className="">
+    <div >
+      <>
       {notes}
+      
+      </>
+
+      
     </div>
   );
 }

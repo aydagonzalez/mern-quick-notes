@@ -4,7 +4,6 @@ import * as notesService from '../../utilities/notes-service';
 
 import * as notesAPI from '../../utilities/notes-api';
 
-// import "./NotesPage.css"
 
 export default function NewNoteForm({ user, addNote }) {
     const [newNote, setNewNote] = useState('');

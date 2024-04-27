@@ -11,8 +11,8 @@ export async function indexNotes(note) {
   return n  //I dont think we need this here
 }
 
-export async function deleteNote(note) {
-  const n = await notesAPI.deleteNote(note);
+export async function deleteNote(id) {
+  const n = await notesAPI.deleteNote(id);
   return n  //I dont think we need this here
 }
 

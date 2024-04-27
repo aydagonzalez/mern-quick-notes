@@ -5,14 +5,17 @@ import * as notesAPI from '../../utilities/notes-api';
 
 // import "./NotesPage.css"
 
-export default function DeleteNoteForm({ idx }) {
-    // const [newNote, setNewNote] = useState('');
+export default function DeleteNoteForm({ idx, id }) {
+    console.log("ID:",id)
+    const [deleteNote, setDeleteNote] = useState('');
     const [error, setError] = useState('');
 
     async function handleDeleteNote(evt) {
         evt.preventDefault();
         try {
-            const deleteNote = await notesAPI.deleteNote(idx)
+            
+            const deleteNote = await notesAPI.deleteNote(id)
+            // console.log('Delete response:', deleteNote);
         } catch {
             setError('Delete Note Failed - Try Again');
         }

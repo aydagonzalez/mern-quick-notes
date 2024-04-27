@@ -11,7 +11,7 @@ router.post('/', notesCtrl.create);
 router.get('/', notesCtrl.index);
 
 // DELETE	/posts/:id
-router.get('/:id', notesCtrl.delete);
+router.delete('/:id', notesCtrl.delete);
 
 module.exports = router;
 
