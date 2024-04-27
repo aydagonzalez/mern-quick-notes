@@ -19,22 +19,31 @@ export default function NewNoteForm({ user, addNote }) {
             addNote(newNote);
             const text = await notesAPI.createNote(newNote)
             const indexNotes = await notesAPI.indexNotes(newNote)
-            setNewNote({ text: ""});
+            setNewNote({ text: "" });
         } catch {
             setError('Add Note Failed - Try Again');
         }
     }
 
     return (
-        <div className='NotesPage'>
-  
-            <form className="NewNoteForm" onSubmit={handleAddNewNote}>
-                <label htmlFor="">Note:</label>
-                <input name="text" value={newNote.text} onChange={handleChange} type="text" />
-                <button>submit note</button>
-            </form>
-            <p className="error-message">&nbsp;{error}</p>
-        </div>
+
+        <main>
+
+            {user.notes.length ?
+
+                <div className='NotesPage'>
+                    <form className="NewNoteForm" onSubmit={handleAddNewNote}>
+                        <label htmlFor="">Note:</label>
+                        <input name="text" value={newNote.text} onChange={handleChange} type="text" />
+                        <button>submit note</button>
+                    </form>
+                    <p className="error-message">&nbsp;{error}</p>
+                </div>
+                
+                : "No Notes Yet!"}
+
+
+        </main >
 
     )
 }

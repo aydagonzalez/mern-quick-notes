@@ -28,6 +28,7 @@ export default function NotesPage({ user }) {
     getNotes()
     }, []);
 
+    
     return (
         <div className='NotesPage'>
             <h1>Notes Page</h1>
