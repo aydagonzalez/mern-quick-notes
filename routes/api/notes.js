@@ -13,5 +13,8 @@ router.get('/', notesCtrl.index);
 // DELETE	/posts/:id
 router.delete('/:id', notesCtrl.delete);
 
+// PUT	/posts/:id
+router.put('/:id', notesCtrl.update);
+
 module.exports = router;
 

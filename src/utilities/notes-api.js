@@ -13,6 +13,7 @@ export async function deleteNote(id) {
   return sendRequest(`${BASE_URL}/${id}`, 'DELETE')
 }
 
-// export function deleteNote(id) {
-//   return sendRequest(`${BASE_URL}/${id}`, 'DELETE', note);
-// }
+export async function updateNote({id, edit} ) {
+  console.log("id, edit:", id, edit)
+  return sendRequest(`${BASE_URL}/${id}`, 'PUT', edit)
+}

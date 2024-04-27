@@ -6,7 +6,9 @@ const User = require('../../models/user')
 module.exports = {
     create,
     index,
-    delete: deleteNote
+    delete: deleteNote,
+    update,
+    edit
 };
 
 
@@ -46,9 +48,9 @@ async function index(req, res) {
 async function deleteNote(req, res) {
     try {
         const user = await User.findById(req.user._id)
-        console.log("PARAMS-ID:",req.params.id )
+        // console.log("PARAMS-ID:",req.params.id )
         const note = await Note.findOne({ '_id': req.params.id})
-        console.log("DELETE-NOTE:", note)
+        // console.log("DELETE-NOTE:", note)
         if (!note) {
             return res.status(404).json({ err: "Note not found" });
         }
@@ -65,3 +67,56 @@ async function deleteNote(req, res) {
     }
 }
 
+
+
+async function edit(req, res) {
+    const user = await User.findById(req.user._id)
+    const note = await Note.findOne({ '_id': req.params.id})
+    if (!note) {
+        return res.status(404).send("Note not found.");
+    }
+    res.json(user.notes)
+  }
+
+
+// async function update(req, res) {
+//     console.log("ID:", req.params.id, "Body:", req.body.content);
+//     try {
+//         const user = await User.findById(req.user._id)
+//         const note = await Note.findOne({ '_id': req.params.id})
+//         console.log("NOTE LOG:", note);
+//         if (!note) {
+//             return res.status(404).send("Note not found.");
+//         }
+//         console.log("COMMENT LOG:", note.text);
+//         note.text = req.body.content;
+//         await note.save();
+//         res.json(user.notes)
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).send("An error occurred.");
+//     }
+//   }
+
+
+
+
+
+async function update(req, res) {
+    console.log("ID:", req.params.id, "Body:", req.body.text);
+    try {
+        const user = await User.findById(req.user._id)
+        const note = await Note.findOne({ '_id': req.params.id})
+        console.log("FOUND NOTE LOG:", note);
+        if (!note) {
+            return res.status(404).send("Note not found.");
+        }
+        console.log("FOUND NOTE TEXT LOG:", note.text);
+        note.text = req.body.text;
+        await note.save();
+        res.json(user.notes)
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("An error occurred.");
+    }
+  }
