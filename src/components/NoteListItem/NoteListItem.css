@@ -1,0 +1,11 @@
+.NoteListItem-note {
+    background-color: aquamarine;
+    /* border: 10px solid black; */
+}
+
+
+* {
+    /* border: 1px black dashed; */
+}
+
+.NoteListItem-note {}

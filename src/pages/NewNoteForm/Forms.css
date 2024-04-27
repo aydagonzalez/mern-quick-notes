@@ -1,0 +1,11 @@
+.UpdateNoteForm-forms form, p{
+    /* background-color: brown; */
+    display: none
+}
+
+.Update-DeleteNoteForms{
+     background-color: brown;
+     display: flex;
+     justify-items: center;
+     justify-content: center;
+}
