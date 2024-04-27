@@ -7,3 +7,13 @@
     /* background-color: aquamarine; */
     width: 60%;
 }
+
+.NotesPage {
+    width: 95%;
+    background-color: #F2F1EB;
+    border-radius: 2rem;
+    padding: 50px;
+    margin: 2rem;
+    margin-bottom: -7rem;
+    gap: 2rem;
+}

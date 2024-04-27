@@ -13,11 +13,6 @@ import NewNoteForm from '../NewNoteForm/NewNoteForm';
 export default function App() {
   const [user, setUser] = useState(getUser())
 
-  // const [notes, setNewNotes] = useState([]);
-  
-  // function addNote(note) {
-  //   setNewNotes([...notes, note]);
-  // }
   return (
     <main className="App">
       {user ?

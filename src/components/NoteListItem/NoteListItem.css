@@ -1,6 +1,11 @@
 .NoteListItem-note {
-    background-color: aquamarine;
-    /* border: 10px solid black; */
+    background-color: #80727B;
+    width: 95%;
+    border-radius: 1rem;
+    padding: 40px;
+    padding-bottom: -20rem;
+    margin: 3rem;
+    gap: 2rem;
 }
 
 
@@ -8,4 +13,15 @@
     /* border: 1px black dashed; */
 }
 
-.NoteListItem-note {}
+
+.NoteListItem-note button {
+   font-size: 13px;
+}
+
+.Sorting-btn {
+    display: flex;
+    margin-top: 2rem;
+    /* justify-items: end; */
+    /* justify-self: end; */
+    justify-self: flex-start;
+}

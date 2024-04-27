@@ -14,7 +14,7 @@ module.exports = {
 
 async function create(req, res) {
     try {
-        const user = await User.findById(req.user._id)
+        const user = await User.findById(req.user._id).populate('notes')
         // const user = await User.findOne({ email: req.body.email });
         const note = await Note.create(req.body)
         // console.log(req.body)

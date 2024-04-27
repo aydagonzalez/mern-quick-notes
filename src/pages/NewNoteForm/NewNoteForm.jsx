@@ -28,9 +28,6 @@ export default function NewNoteForm({ user, addNote }) {
     return (
 
         <main>
-
-            {user.notes.length ?
-
                 <div className='NotesPage'>
                     <form className="NewNoteForm" onSubmit={handleAddNewNote}>
                         <label htmlFor="">Note:</label>
@@ -39,10 +36,6 @@ export default function NewNoteForm({ user, addNote }) {
                     </form>
                     <p className="error-message">&nbsp;{error}</p>
                 </div>
-                
-                : "No Notes Yet!"}
-
-
         </main >
 
     )

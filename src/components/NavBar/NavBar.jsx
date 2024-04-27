@@ -13,10 +13,10 @@ export default function NavBar({ user, setUser }) {
     <nav>
       <p>Welcome, {user.name}</p>
       <Link to="/notes">Notes </Link>
-      &nbsp; | &nbsp;
+      {/* &nbsp; | &nbsp; */}
       {/* <Link to="/orders/new">New Order</Link> */}
       {/* &nbsp; | &nbsp; */}
-      <Link to=""  >Log In</Link>
+      {/* <Link to=""  >Log In</Link> */}
       &nbsp; | &nbsp;
       <Link to="" onClick={handleLogOut} >Log Out</Link>
     </nav>
