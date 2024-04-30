@@ -4,7 +4,7 @@ import * as notesAPI from '../../utilities/notes-api';
 import "./Forms.css"
 // import * as crud from "../../../crud-helper"
 
-export default function UpdateNoteForm({ idx, id , addNote }) {
+export default function UpdateNoteForm({ idx, id , addNote, getNotes }) {
     // console.log("ID:",id)
     const [updateNote, setUpdateNote] = useState('');
     const [edit, setEdit] = useState(false);
@@ -32,6 +32,7 @@ export default function UpdateNoteForm({ idx, id , addNote }) {
             const updateNote = await notesAPI.updateNote({id, edit})
             console.log("updateNote", updateNote)
             setEdit({ text: ""});
+            getNotes()
             // console.log('Update response:', UpdateNote);
         } catch {
             setError('Update Note Failed - Try Again');

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import * as notesAPI from '../../utilities/notes-api';
 
-export default function DeleteNoteForm({ idx, id }) {
+export default function DeleteNoteForm({ idx, id, setNotes, getNotes }) {
     // console.log("ID:",id)
     const [deleteNote, setDeleteNote] = useState('');
     const [error, setError] = useState('');
@@ -10,9 +10,9 @@ export default function DeleteNoteForm({ idx, id }) {
     async function handleDeleteNote(evt) {
         evt.preventDefault();
         try {
-
             const deleteNote = await notesAPI.deleteNote(id)
-            // console.log('Delete response:', deleteNote);
+            console.log('Delete response:', deleteNote);
+            getNotes()
         } catch {
             setError('Delete Note Failed - Try Again');
         }

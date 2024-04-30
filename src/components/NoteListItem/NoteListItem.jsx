@@ -3,7 +3,7 @@ import DeleteNoteForm from "../../pages/NewNoteForm/DeleteNoteForm";
 import UpdateNoteForm from "../../pages/NewNoteForm/UpdateNoteForm";
 import "./NoteListItem.css"
 
-export default function NoteListItem({ noteItems, addNote }) {
+export default function NoteListItem({ noteItems, addNote, key, setNotes, getNotes}) {
   const [ascending, setAscending] = useState(true);
 
   function handleSortNotesByDates(evt) {
@@ -19,15 +19,15 @@ export default function NoteListItem({ noteItems, addNote }) {
 
 
   const notes = noteItems.map((note, idx) =>
-    <div className="NoteListItem-note" >
+    <div className="NoteListItem-note" key={idx*5} >
       <h3>
         {new Date(note.createdAt).toLocaleDateString()}&nbsp;
         {new Date(note.createdAt).toLocaleTimeString()} <br />
       </h3>
       <h2>{note.text} </h2>
       <div className="Update-DeleteNoteForms">
-        <DeleteNoteForm note={note} key={idx} id={note._id} />
-        <UpdateNoteForm note={note} key={idx} id={note._id} addNote={addNote} />
+        <DeleteNoteForm note={note} key={idx+11} id={note._id} setNotes={setNotes} getNotes={getNotes} />
+        <UpdateNoteForm note={note} key={idx+12} id={note._id} addNote={addNote} setNotes={setNotes} getNotes={getNotes} />
       </div>
 
     </div>
@@ -35,7 +35,7 @@ export default function NoteListItem({ noteItems, addNote }) {
   return (
 
     <div >
-      <button className="Sorting-btn" onClick={handleSortNotesByDates}>
+      <button key={"button"} className="Sorting-btn" onClick={handleSortNotesByDates}>
         {ascending ? "Sort Dates Descending" : "Sort Date Ascending"}
       </button>
       {notes}

@@ -1,10 +1,10 @@
 // import * as usersService from '../../utilities/users-service';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as notesAPI from '../../utilities/notes-api';
 
 
-export default function NewNoteForm({ user, addNote }) {
-    const [newNote, setNewNote] = useState('');
+export default function NewNoteForm({ user, addNote, setNotes }) {
+    const [newNote, setNewNote] = useState({ text:''});
     const [error, setError] = useState('');
 
     function handleChange(evt) {
@@ -16,14 +16,18 @@ export default function NewNoteForm({ user, addNote }) {
     async function handleAddNewNote(evt) {
         evt.preventDefault();
         try {
-            addNote(newNote);
             const text = await notesAPI.createNote(newNote)
-            const indexNotes = await notesAPI.indexNotes(newNote)
+            // const indexNotes = await notesAPI.indexNotes()
             setNewNote({ text: "" });
+            // setNotes(indexNotes)
+            addNote();
         } catch {
             setError('Add Note Failed - Try Again');
         }
     }
+    useEffect(function(){
+    }, [newNote])
+
 
     return (
 

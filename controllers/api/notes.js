@@ -19,11 +19,11 @@ async function create(req, res) {
         const note = await Note.create(req.body)
         // console.log(req.body)
         note.text = req.body.text
-        note.save()
+        await note.save()
         user.notes.push(note)
-        user.save()
+        await user.save()
+        res.status(200).json(note)
     } catch (err) {
-        // Client will check for non-2xx status code 
         res.status(400).json(err);
     }
 }
@@ -48,39 +48,41 @@ async function index(req, res) {
 async function deleteNote(req, res) {
     try {
         const user = await User.findById(req.user._id)
-        // console.log("PARAMS-ID:",req.params.id )
-        const note = await Note.findOne({ '_id': req.params.id})
-        // console.log("DELETE-NOTE:", note)
+        console.log("USER:", user)
+        const note = await Note.findByIdAndDelete(req.params.id)
+        console.log("DELETE-NOTE:", note)
         if (!note) {
             return res.status(404).json({ err: "Note not found" });
         }
-        
-        await note.deleteOne({ '_id': req.params.id });
-        // const note = await Note.find({})
-        // const userNotes = user.notes
-        // console.log("NOTE:", notes)
-        res.json(user.notes)
+        // await note.deleteOne({ '_id': req.params.id });
+        // const user = await User.findById(req.user._id)
+        console.log("note._id", note._id)
+        const filterNoteByUser = user.notes.filter(n => (n.toString() !== note._id.toString()))
+        console.log("filterNoteByUser:", filterNoteByUser)
+        user.notes = filterNoteByUser
+        console.log("USER:", user)
+        await user.save()
+        res.status(200).json(user.notes)
         // console.log("NOTE:", note)
     } catch (err) {
-        // Client will check for non-2xx status code 
         res.status(400).json(err);
     }
 }
 
 async function edit(req, res) {
     const user = await User.findById(req.user._id)
-    const note = await Note.findOne({ '_id': req.params.id})
+    const note = await Note.findOne({ '_id': req.params.id })
     if (!note) {
         return res.status(404).send("Note not found.");
     }
     res.json(user.notes)
-  }
+}
 
 async function update(req, res) {
     console.log("ID:", req.params.id, "Body:", req.body.text);
     try {
         const user = await User.findById(req.user._id)
-        const note = await Note.findOne({ '_id': req.params.id})
+        const note = await Note.findOne({ '_id': req.params.id })
         console.log("FOUND NOTE LOG:", note);
         if (!note) {
             return res.status(404).send("Note not found.");
@@ -93,4 +95,19 @@ async function update(req, res) {
         console.error(err);
         res.status(500).send("An error occurred.");
     }
-  }
+}
+
+//   async function deleteNote(req, res) {
+//     try {
+//         const user = await User.findById(req.user._id)
+//         const note = await Note.findOne({ '_id': req.params.id})
+//         if (!note) {
+//             return res.status(404).json({ err: "Note not found" });
+//         }
+//         await note.deleteOne({ '_id': req.params.id });
+//         res.json(user.notes)
+//         // console.log("NOTE:", note)
+//     } catch (err) {
+//         res.status(400).json(err);
+//     }
+// }
